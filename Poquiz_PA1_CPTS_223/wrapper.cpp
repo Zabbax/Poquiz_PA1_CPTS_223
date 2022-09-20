@@ -21,7 +21,7 @@ void wrapper::run()
 			playgame(score);
 			break;
 		case 3:
-			loadprevioussave(score);
+			loadplayer(score);
 			break;
 		case 4:
 			add();
@@ -185,7 +185,7 @@ void wrapper::playgame(int startScore)
 			cout << mQuestions.getNodeAtPosition(linuxlist[desc])->data.description << endl;
 		}
 
-		// get user guess and check adjust score
+		//check user input
 		int useranswer = prompt(0, 2, "Which command does this correspond to? ");
 		totalquestions++;
 
@@ -208,7 +208,7 @@ void wrapper::playgame(int startScore)
 	updateplayer(name, score);
 }
 
-void wrapper::loadprevioussave(int& score) 
+void wrapper::loadplayer(int& score) 
 {
 	string name;
 	bool found = false;
@@ -266,7 +266,7 @@ void wrapper::add()
 	cout << "Enter the command description: ";
 	getline(cin, newData.description);
 	getline(cin, newData.description);
-	cout << "Command '" << newData.name << "' successfully added." << endl;
+	cout << "Command '" << newData.name << "' added." << endl;
 
 	mQuestions.insertAtFront(newData);
 	this->modified = true;
@@ -279,10 +279,11 @@ void wrapper::remove()
 	{
 		string name;
 		bool removed = false;
-		cout << "Enter the command name to remove: ";
+		cout << "Enter the command name to delete: ";
 		cin >> name;
 		node<question>* pCurrent = mQuestions.getHead();
-		while (pCurrent != nullptr) {
+		while (pCurrent != nullptr) 
+		{
 			if (pCurrent->data.name == name) 
 			{
 				removed = mQuestions.removeNode(pCurrent);
@@ -290,7 +291,7 @@ void wrapper::remove()
 			}
 			pCurrent = pCurrent->next;
 		}
-		//word exist and was removed
+		//linux command exist and was removed
 		if (removed) 
 		{
 			this->modified = true;

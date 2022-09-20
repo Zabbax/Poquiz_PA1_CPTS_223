@@ -61,7 +61,7 @@ private:
 
     void printrules();
     void playgame(int startScore);
-    void loadprevioussave(int& score);
+    void loadplayer(int& score);
 
     //add remove linux commands
     void add();
